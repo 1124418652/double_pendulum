@@ -3,7 +3,7 @@
 from sympy import *
 from sympy import Derivative as D
 import math
-import numpy as np
+
 
 var("x1 x2 y1 y2 l1 l2 m1 m2 th_1 th_2 dth_1 dth_2 w_1 w_2 dw_1 dw_2 ddth_1 ddth_2 t g tmp tmp2")
 
@@ -52,8 +52,11 @@ w_2 = dth_2
 equ_1 = expand(simplify(lagrange_equation(L, th_1).subs(change_list)))
 equ_2 = expand(simplify(lagrange_equation(L, th_2).subs(change_list)))
 
-print("start:\n")
-pprint()
+print("the differential equations are:\nequ_1:\n")
+pprint(equ_1)
+print("\nequ_2:\n")
+pprint(equ_2)
+
 
 
 
