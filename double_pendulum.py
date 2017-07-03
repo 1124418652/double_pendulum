@@ -5,7 +5,7 @@ from sympy import Derivative as D
 import math
 import numpy as np
 
-var("x1 x2 y1 y2 l1 l2 m1 m2 th_1 th_2 dth_1 dth_2 ddth_1 ddth_2 t g tmp tmp2")
+var("x1 x2 y1 y2 l1 l2 m1 m2 th_1 th_2 dth_1 dth_2 w_1 w_2 dw_1 dw_2 ddth_1 ddth_2 t g tmp tmp2")
 
 #the coordinates of the two balls are (x1,y1),(x2,y2)
 x1 = l1 * sin(th_1(t))
@@ -32,7 +32,30 @@ def lagrange_equation(L, th):
     pprint(simplify(L_equ))
     return L_equ
     
-    
+"""
+在返回的拉格朗日方程中含有二介导数，所以需要通过以下关系将其转化为一介微分方程组：
+dth_1 = w1
+dth_2 = w2
+"""
+change_list = [
+    (D(th_1(t),t,t), dw_1),
+    (D(th_2(t),t,t), dw_2),
+    (D(th_1(t),t), dth_1),
+    (D(th_2(t),t), dth_2),
+    (th_1(t), th_1),
+    (th_2(t), th_2)
+]
+
+#constructing differential equations
+w_1 = dth_1
+w_2 = dth_2
+equ_1 = expand(simplify(lagrange_equation(L, th_1).subs(change_list)))
+equ_2 = expand(simplify(lagrange_equation(L, th_2).subs(change_list)))
+
+print("start:\n")
+pprint()
+
+
 
 
 
