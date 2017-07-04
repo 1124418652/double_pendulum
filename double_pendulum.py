@@ -22,14 +22,16 @@ v_y2 = diff(y2, t)
 L = m1/2 * (v_x1**2 + v_y1**2) + m2/2 * (v_x2**2 + v_y2**2) - m1 * g * y1 - m2 * g * y2
 print("the lagrange value is:\n")
 pprint(simplify(L))
+print("\n")
 
 #calculate lagrange equation
 def lagrange_equation(L, th):
     ddL_th = L.subs(D(th(t),t), tmp).diff(tmp,1).subs(tmp, D(th(t),t))
     dL_th = L.subs(D(th(t),t), tmp).subs(th(t),tmp2).diff(tmp2,1).subs(tmp2,th(t)).subs(tmp,D(th(t),t))
     L_equ = ddL_th.diff(t,1) - dL_th
-    print("the lagrange equation is:\n")
+    print("the lagrange equation of %r is:\n"%th)
     pprint(simplify(L_equ))
+    print("\n")
     return L_equ
     
 """
@@ -47,8 +49,6 @@ change_list = [
 ]
 
 #constructing differential equations
-w_1 = dth_1
-w_2 = dth_2
 equ_1 = expand(simplify(lagrange_equation(L, th_1).subs(change_list)))
 equ_2 = expand(simplify(lagrange_equation(L, th_2).subs(change_list)))
 
