@@ -11,8 +11,16 @@ class DoublePendulum(object):
         self.init_status = [0.0, 0.0, 0.0, 0.0]
     
     def get_DoublePendulum_parameters(self):
-        par = []
-        par = input("input the value of l1,m1,l2,m2 and seperated with commas:\n")
+        ans = raw_input("the initial value of l1, m1, l2, m2 are 1, 1, 2, 2, if you want to change the value,\n"
+        "please press Y, else press N:\n")
+        par = []    	
+        if ans == 'N':
+            par = [1, 1, 2, 2]
+        elif (ans == 'Y'):
+            par = input("please reset the value of l1, m1, l2, m2:")
+        else:
+            print("I can't understand your answer!")	
+            exit(1)
         self.l1, self.m1, self.l2, self.m2 = par
         print("the initial parameters have been set successfully!\n")
         
